@@ -7,3 +7,4 @@ bin/
 *.sublime-workspace
 *.pyc
 CMakeLists.txt.user
+*.swp

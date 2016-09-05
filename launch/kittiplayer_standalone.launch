@@ -4,14 +4,14 @@
         <arg name="camera" default="/kitti_player/grayscale" />
 
     <arg    name="directory"
-            default="$(find kitti_player)/dataset/2011_09_26/2011_09_26_drive_0005_sync/"
+            default="/mnt/external/dataset/sequences/01"
             />
 
     <node   name="kitti_player" pkg="kitti_player" type="kitti_player"
             required="true"
-            args= "-d $(arg directory) -a -p map -F 1 -D -V"
-            output="screen"
-            />
+            args= "-d $(arg directory) -v -C -S -p world -F 1 -D -V"
+            output="screen">
+	</node>
 
     <!--TYPE THIS LINE TO VIEW SOMETHING with the SYNCH MODE enabled-->
     <!--rosrun image_view image_view image:=/kitti_player/grayscale/left/image_rect-->
