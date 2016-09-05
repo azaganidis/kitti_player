@@ -1,4 +1,5 @@
 Fork for the playback of synced+rectified data. 
+Velodyne data are transformed to camera frame according to calibration file, before sending.
 
 From version 2, this node aims to play the whole kitti data into ROS (Color/Grayscale images, Velodyne scan as PCL, sensor_msgs/Imu Message, GPS as sensor_msgs/NavSatFix Message). 
 
