@@ -287,11 +287,13 @@ int getLidarTransform(string dir_root, double* Tr)
                 //std::cout << *token_iterator << '\n';
                 Tr[index++] = boost::lexical_cast<double>(*token_iterator);
             }
+			ROS_INFO_STREAM("... ok");
+			return true;
         }
-
     }
-    ROS_INFO_STREAM("... ok");
-    return true;
+	ROS_INFO_STREAM("... No transform");
+	return false;
+
 }
 int getGPS(string filename, sensor_msgs::NavSatFix *ros_msgGpsFix, std_msgs::Header *header)
 {
@@ -994,19 +996,8 @@ int main(int argc, char **argv)
 	int lastSuccess=0;
 	Eigen::Matrix4f transform_1=Eigen::Matrix4f::Identity();
 	double Tr[12];
-	getLidarTransform(dir_root, Tr);
-	transform_1(0,0)=Tr[0];
-	transform_1(0,1)=Tr[1];
-	transform_1(0,2)=Tr[2];
-	transform_1(0,3)=Tr[3];
-	transform_1(1,0)=Tr[4];
-	transform_1(1,1)=Tr[5];
-	transform_1(1,2)=Tr[6];
-	transform_1(1,3)=Tr[7];
-	transform_1(2,0)=Tr[8];
-	transform_1(2,1)=Tr[9];
-	transform_1(2,2)=Tr[10];
-	transform_1(2,3)=Tr[11];
+	if(getLidarTransform(dir_root, Tr))
+		transform_1(0,0)=Tr[0]; transform_1(0,1)=Tr[1]; transform_1(0,2)=Tr[2]; transform_1(0,3)=Tr[3]; transform_1(1,0)=Tr[4]; transform_1(1,1)=Tr[5]; transform_1(1,2)=Tr[6]; transform_1(1,3)=Tr[7]; transform_1(2,0)=Tr[8]; transform_1(2,1)=Tr[9]; transform_1(2,2)=Tr[10]; transform_1(2,3)=Tr[11];
     do
     {
 		int timeIntegerSec;
