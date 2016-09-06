@@ -93,7 +93,7 @@ bool waitSynch = false; /// Synch mode variable, refs #600
  */
 void synchCallback(const std_msgs::Bool::ConstPtr& msg)
 {
-    ROS_INFO_STREAM("Synch received");
+    //ROS_INFO_STREAM("Synch received");
     if (msg->data)
         waitSynch = false;
 }

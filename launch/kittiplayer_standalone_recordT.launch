@@ -4,14 +4,27 @@
         <arg name="camera" default="/kitti_player/grayscale" />
 
     <arg    name="directory"
-            default="/mnt/external/dataset/sequences/00"
+            default="/mnt/external/dataset"
             />
+
+    <arg    name="method"
+            default="loam"
+            />
+
+    <arg    name="sequence"
+            default="08"
+            />
+
 
     <node   name="kitti_player" pkg="kitti_player" type="kitti_player"
             required="true"
-            args= "-d $(arg directory) -v -C -S -p world -F 1 -D -V"
+            args= "-d $(arg directory)/sequences/$(arg sequence) -v -C -S -p world -F 1 -D -V"
             output="screen">
 	</node>
+	<node   name="recordRes" pkg="generalp" type="recordT"
+			args="$(arg directory)/results/$(arg method)/data/$(arg sequence).txt" output="screen">
+	</node>
+
 
     <!--TYPE THIS LINE TO VIEW SOMETHING with the SYNCH MODE enabled-->
     <!--rosrun image_view image_view image:=/kitti_player/grayscale/left/image_rect-->
