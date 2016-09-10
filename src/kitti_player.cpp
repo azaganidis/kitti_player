@@ -1017,9 +1017,9 @@ int main(int argc, char **argv)
                 ros::spinOnce();
 				ros::Duration(0.1).sleep();
 				notReceivingCounter++;
-				if(notReceivingCounter>10)
+				if(notReceivingCounter>10&&lastSuccess<2)
 				{
-	//				ROS_INFO_STREAM("No sync. Resend last");
+					ROS_INFO_STREAM("No sync. Resend last");
 					notReceivingCounter=0;
 					waitSynch=true;
 					entries_played=lastSuccess;

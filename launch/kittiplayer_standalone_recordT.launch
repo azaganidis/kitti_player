@@ -8,7 +8,7 @@
             />
 
     <arg    name="method"
-            default="loam"
+            default="ndtom"
             />
 
     <arg    name="sequence"
